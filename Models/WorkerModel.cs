@@ -13,7 +13,6 @@ namespace SanitationApp.Models
         [Required]
         public string? Role { get; set; } 
         [Required]
-        [Phone]
         public int? PhoneNumber { get; set; } 
 
         //En arbetare kan ha flera saneringsarbeten

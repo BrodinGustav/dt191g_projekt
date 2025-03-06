@@ -2,7 +2,6 @@ C:\Utbildning\dt191g_ASPNET\dt191g_projekt\bin\Debug\net9.0\appsettings.Developm
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\bin\Debug\net9.0\appsettings.json
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\bin\Debug\net9.0\dt191g_projekt.staticwebassets.runtime.json
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\bin\Debug\net9.0\dt191g_projekt.staticwebassets.endpoints.json
-C:\Utbildning\dt191g_ASPNET\dt191g_projekt\bin\Debug\net9.0\app.db
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\bin\Debug\net9.0\dt191g_projekt.exe
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\bin\Debug\net9.0\dt191g_projekt.deps.json
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\bin\Debug\net9.0\dt191g_projekt.runtimeconfig.json
@@ -425,3 +424,4 @@ C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\refint\dt191g_projek
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\dt191g_projekt.pdb
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\dt191g_projekt.genruntimeconfig.cache
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\ref\dt191g_projekt.dll
+C:\Utbildning\dt191g_ASPNET\dt191g_projekt\bin\Debug\net9.0\app.db

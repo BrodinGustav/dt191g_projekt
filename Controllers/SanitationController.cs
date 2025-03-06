@@ -24,9 +24,15 @@ namespace dt191g_projekt.Controllers
         public async Task<IActionResult> Index()
         {
             //Kontroll om _context.Sanitations är null
-            if(_context.Sanitations == null) {
+            if (_context.Sanitations == null)
+            {
                 return NotFound();
             }
+
+            var sanitations = _context.Sanitations
+            .Include(s => s.Customer)
+            .Include(s => s.Worker);
+
             return View(await _context.Sanitations.ToListAsync());
         }
 
@@ -39,7 +45,8 @@ namespace dt191g_projekt.Controllers
                 return NotFound();
             }
 
-             if(_context.Sanitations == null) {
+            if (_context.Sanitations == null)
+            {
                 return NotFound();
             }
 
@@ -57,25 +64,28 @@ namespace dt191g_projekt.Controllers
         // GET: Sanitation/Create
         public IActionResult Create()
         {
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name");
+            ViewData["WorkerId"] = new SelectList(_context.Workers, "Id", "Name");
             return View();
         }
 
-       // POST: Sanitation/Create
+        // POST: Sanitation/Create
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,SanitationType,Location,Description,WasteAmount,")] SanitationModel sanitationModel)
-        {
+        public async Task<IActionResult> Create(SanitationModel sanitation)       {
             if (ModelState.IsValid)
             {
-                _context.Add(sanitationModel);
+                _context.Add(sanitation);
 
                 //Lägg till logged in user till created by
-                sanitationModel.CreatedBy = User.Identity?.Name ?? "Unknown";
+                sanitation.CreatedBy = User.Identity?.Name ?? "Unknown";
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(sanitationModel);
+             ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name", sanitation.CustomerId);
+            ViewData["WorkerId"] = new SelectList(_context.Workers, "Id", "Name", sanitation.WorkerId);
+            return View(sanitation);
         }
 
         [Authorize]
@@ -87,7 +97,8 @@ namespace dt191g_projekt.Controllers
                 return NotFound();
             }
 
-             if(_context.Sanitations == null) {
+            if (_context.Sanitations == null)
+            {
                 return NotFound();
             }
 
@@ -100,7 +111,7 @@ namespace dt191g_projekt.Controllers
         }
 
         // POST: Sanitation/Edit/5
-         [Authorize]
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,SanitationType,Location,Description,WasteAmount")] SanitationModel sanitationModel)
@@ -142,7 +153,8 @@ namespace dt191g_projekt.Controllers
                 return NotFound();
             }
 
-             if(_context.Sanitations == null) {
+            if (_context.Sanitations == null)
+            {
                 return NotFound();
             }
 
@@ -162,7 +174,8 @@ namespace dt191g_projekt.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-             if(_context.Sanitations == null) {
+            if (_context.Sanitations == null)
+            {
                 return NotFound();
             }
 
@@ -178,7 +191,8 @@ namespace dt191g_projekt.Controllers
 
         private bool SanitationModelExists(int id)
         {
-             if(_context.Sanitations == null) {
+            if (_context.Sanitations == null)
+            {
                 return false;
             }
             return _context.Sanitations.Any(e => e.Id == id);

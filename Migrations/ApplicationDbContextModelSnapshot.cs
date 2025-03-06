@@ -2,20 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dt191g_projekt.Data;
 
 #nullable disable
 
-namespace dt191g_projekt.Data.Migrations
+namespace dt191g_projekt.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250306112751_Sanitation")]
-    partial class Sanitation
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.2");
@@ -216,6 +213,51 @@ namespace dt191g_projekt.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("SanitationApp.Models.CustomerModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("SanitationApp.Models.WorkerModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("PhoneNumber")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Workers");
+                });
+
             modelBuilder.Entity("dt191g_projekt.Models.SanitationModel", b =>
                 {
                     b.Property<int>("Id")
@@ -224,6 +266,9 @@ namespace dt191g_projekt.Data.Migrations
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -237,10 +282,17 @@ namespace dt191g_projekt.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("WasteAmount")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("WasteAmount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("WorkerId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("WorkerId");
 
                     b.ToTable("Sanitations");
                 });
@@ -294,6 +346,35 @@ namespace dt191g_projekt.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("dt191g_projekt.Models.SanitationModel", b =>
+                {
+                    b.HasOne("SanitationApp.Models.CustomerModel", "Customer")
+                        .WithMany("Sanitations")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SanitationApp.Models.WorkerModel", "Worker")
+                        .WithMany("Sanitations")
+                        .HasForeignKey("WorkerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Worker");
+                });
+
+            modelBuilder.Entity("SanitationApp.Models.CustomerModel", b =>
+                {
+                    b.Navigation("Sanitations");
+                });
+
+            modelBuilder.Entity("SanitationApp.Models.WorkerModel", b =>
+                {
+                    b.Navigation("Sanitations");
                 });
 #pragma warning restore 612, 618
         }

@@ -12,4 +12,5 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<SanitationModel>? Sanitations { get; set; }
     public DbSet<CustomerModel> Customers { get; set; }
     public DbSet<WorkerModel> Workers { get; set; }
+    
 }
