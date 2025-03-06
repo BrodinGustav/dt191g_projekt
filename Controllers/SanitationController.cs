@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using dt191g_projekt.Data;
 using dt191g_projekt.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace dt191g_projekt.Controllers
 {
@@ -22,14 +23,23 @@ namespace dt191g_projekt.Controllers
         // GET: Sanitation
         public async Task<IActionResult> Index()
         {
+            //Kontroll om _context.Sanitations är null
+            if(_context.Sanitations == null) {
+                return NotFound();
+            }
             return View(await _context.Sanitations.ToListAsync());
         }
+
 
         // GET: Sanitation/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
+                return NotFound();
+            }
+
+             if(_context.Sanitations == null) {
                 return NotFound();
             }
 
@@ -43,33 +53,41 @@ namespace dt191g_projekt.Controllers
             return View(sanitationModel);
         }
 
+        [Authorize]
         // GET: Sanitation/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Sanitation/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+       // POST: Sanitation/Create
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,SanitationType,Location,Description,WasteAmount,CreatedBy")] SanitationModel sanitationModel)
+        public async Task<IActionResult> Create([Bind("Id,SanitationType,Location,Description,WasteAmount,")] SanitationModel sanitationModel)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(sanitationModel);
+
+                //Lägg till logged in user till created by
+                sanitationModel.CreatedBy = User.Identity?.Name ?? "Unknown";
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(sanitationModel);
         }
 
+        [Authorize]
         // GET: Sanitation/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
+                return NotFound();
+            }
+
+             if(_context.Sanitations == null) {
                 return NotFound();
             }
 
@@ -82,11 +100,10 @@ namespace dt191g_projekt.Controllers
         }
 
         // POST: Sanitation/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,SanitationType,Location,Description,WasteAmount,CreatedBy")] SanitationModel sanitationModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,SanitationType,Location,Description,WasteAmount")] SanitationModel sanitationModel)
         {
             if (id != sanitationModel.Id)
             {
@@ -116,11 +133,16 @@ namespace dt191g_projekt.Controllers
             return View(sanitationModel);
         }
 
+        [Authorize]
         // GET: Sanitation/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
+                return NotFound();
+            }
+
+             if(_context.Sanitations == null) {
                 return NotFound();
             }
 
@@ -135,10 +157,15 @@ namespace dt191g_projekt.Controllers
         }
 
         // POST: Sanitation/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+             if(_context.Sanitations == null) {
+                return NotFound();
+            }
+
             var sanitationModel = await _context.Sanitations.FindAsync(id);
             if (sanitationModel != null)
             {
@@ -151,6 +178,9 @@ namespace dt191g_projekt.Controllers
 
         private bool SanitationModelExists(int id)
         {
+             if(_context.Sanitations == null) {
+                return false;
+            }
             return _context.Sanitations.Any(e => e.Id == id);
         }
     }
