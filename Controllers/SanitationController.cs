@@ -31,9 +31,10 @@ namespace dt191g_projekt.Controllers
 
             var sanitations = _context.Sanitations
             .Include(s => s.Customer)
-            .Include(s => s.Worker);
+            .Include(s => s.Worker)
+            .ToListAsync();
 
-            return View(await _context.Sanitations.ToListAsync());
+            return View(await sanitations);
         }
 
 
