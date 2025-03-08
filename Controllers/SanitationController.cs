@@ -46,6 +46,11 @@ namespace dt191g_projekt.Controllers
                 return NotFound();
             }
 
+            var sanitation = await _context.Sanitations
+                   .Include(s => s.Worker)  // Inkluderar Worker
+                   .Include(s => s.Customer) // Inkluderar Customer
+                   .FirstOrDefaultAsync(m => m.Id == id);
+
             if (_context.Sanitations == null)
             {
                 return NotFound();
@@ -74,7 +79,8 @@ namespace dt191g_projekt.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(SanitationModel sanitation)       {
+        public async Task<IActionResult> Create(SanitationModel sanitation)
+        {
             if (ModelState.IsValid)
             {
                 _context.Add(sanitation);
@@ -84,7 +90,7 @@ namespace dt191g_projekt.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-             ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name", sanitation.CustomerId);
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name", sanitation.CustomerId);
             ViewData["WorkerId"] = new SelectList(_context.Workers, "Id", "Name", sanitation.WorkerId);
             return View(sanitation);
         }
@@ -103,12 +109,19 @@ namespace dt191g_projekt.Controllers
                 return NotFound();
             }
 
+            var sanitation = await _context.Sanitations
+       .Include(s => s.Worker)   // Laddar Worker
+       .Include(s => s.Customer) // Laddar Customer
+       .FirstOrDefaultAsync(m => m.Id == id);
+
             var sanitationModel = await _context.Sanitations.FindAsync(id);
             if (sanitationModel == null)
             {
                 return NotFound();
             }
-            return View(sanitationModel);
+            ViewData["WorkerId"] = new SelectList(_context.Workers, "Id", "Name", sanitation.WorkerId);
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name", sanitation.CustomerId);
+            return View(sanitation);
         }
 
         // POST: Sanitation/Edit/5

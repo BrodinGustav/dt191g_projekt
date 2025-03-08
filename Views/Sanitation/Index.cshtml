@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Lägg till ny sanering</a>
 </p>
 <table class="table">
     <thead>
@@ -41,39 +41,25 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SanitationType)
+                    @(item.SanitationType != null ? item.SanitationType : "Ej angivet")
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Location)
+                    @(item.Location != null ? item.Location : "Ej angivet")
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Description)
+                    @(item.Description != null ? item.Description : "Ej angivet")
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.WasteAmount)
+                    @(item.WasteAmount != null ? $"{item.WasteAmount} m³" : "Ej angivet")
                 </td>
                 <td>
-                      @if (item.Worker != null)
-                {
-                    @Html.DisplayFor(modelItem => item.Worker.Name)
-                }
-                else
-                {
-                    <span>Ej tilldelad</span>
-                }
+                    @(item.Worker != null ? item.Worker.Name : "Ej angivet")
                 </td>
                 <td>
-                    @if (item.Customer != null)
-                {
-                    @Html.DisplayFor(modelItem => item.Customer.Name)
-                }
-                else
-                {
-                    <span>Ej tilldelad</span>
-                }
+                    @(item.Customer != null ? item.Customer.Name : "Ej angivet")
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                    @(item.CreatedBy != null ? item.CreatedBy : "Ej angivet")
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

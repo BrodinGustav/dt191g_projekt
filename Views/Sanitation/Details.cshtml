@@ -11,44 +11,59 @@
     <h4>SanitationModel</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.SanitationType)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @(Model.SanitationType?.ToString() ?? "Ej angivet")
         </dd>
-        <dt class = "col-sm-2">
+        
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Location)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @(Model.Location?.ToString() ?? "Ej angivet")
         </dd>
-        <dt class = "col-sm-2">
+        
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @(Model.Description?.ToString() ?? "Ej angivet")
         </dd>
-        <dt class = "col-sm-2">
+        
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.WasteAmount)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @(Model.WasteAmount?.ToString() ?? "Ej angivet")
         </dd>
-        <dt class = "col-sm-2">
-              @(Model.Worker != null ? Model.Worker.Name : "Ej tilldelad")
+        
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Worker)
         </dt>
-        <dt class = "col-sm-2">
+        <dd class="col-sm-10">
+            @(Model.Worker != null ? Model.Worker.Name : "Ej tilldelad")
+        </dd>
+        
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Customer)
+        </dt>
+        <dd class="col-sm-10">
             @(Model.Customer != null ? Model.Customer.Name : "Ingen kund angiven")
-        </dt>
-        <dt class = "col-sm-2">
+        </dd>
+        
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.CreatedBy)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.CreatedBy)
         </dd>
+    
     </dl>
 </div>
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
