@@ -1,16 +1,16 @@
 ﻿<Project>
   <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/dt191g_projekt/css/layout.279egup46t.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\layout.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"279egup46t"},{"Name":"integrity","Value":"sha256-Dv7uwYlYxdQTLMRZLp9QNdS9IsX852mVhg2gBx//lqE="},{"Name":"label","Value":"_content/dt191g_projekt/css/layout.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"6190"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022Dv7uwYlYxdQTLMRZLp9QNdS9IsX852mVhg2gBx//lqE=\u0022"},{"Name":"Last-Modified","Value":"Mon, 10 Mar 2025 11:57:15 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/dt191g_projekt/css/layout.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\layout.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-MsAB85PHLWAyQam5ahitSO74Jjcs0GIWwNwrXelfN7I="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"5028"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022MsAB85PHLWAyQam5ahitSO74Jjcs0GIWwNwrXelfN7I=\u0022"},{"Name":"Last-Modified","Value":"Mon, 10 Mar 2025 09:28:28 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/dt191g_projekt/css/layout.u1f8i8xh21.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\layout.css'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"u1f8i8xh21"},{"Name":"integrity","Value":"sha256-MsAB85PHLWAyQam5ahitSO74Jjcs0GIWwNwrXelfN7I="},{"Name":"label","Value":"_content/dt191g_projekt/css/layout.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"5028"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022MsAB85PHLWAyQam5ahitSO74Jjcs0GIWwNwrXelfN7I=\u0022"},{"Name":"Last-Modified","Value":"Mon, 10 Mar 2025 09:28:28 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-Dv7uwYlYxdQTLMRZLp9QNdS9IsX852mVhg2gBx//lqE="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"6190"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022Dv7uwYlYxdQTLMRZLp9QNdS9IsX852mVhg2gBx//lqE=\u0022"},{"Name":"Last-Modified","Value":"Mon, 10 Mar 2025 11:57:15 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/dt191g_projekt/css/site.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
