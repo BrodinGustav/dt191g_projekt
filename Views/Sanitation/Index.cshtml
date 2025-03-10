@@ -61,11 +61,31 @@
                     @(item.CreatedBy != null ? item.CreatedBy : "Ej angivet")
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
-                    <a asp-action="Details" asp-route-id="@item.Id">Detaljer</a> 
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">Detaljer</a>
                     <a asp-action="Delete" asp-route-id="@item.Id">Radera</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+
+<!--Kortlayout för små enheter -->
+<div class="sanitation-cards">
+    @foreach (var item in Model)
+    {
+        <div class="sanitation-card">
+            <p><strong>Typ:</strong> @(item.SanitationType ?? "Ej angivet")</p>
+            <p><strong>Plats:</strong> @(item.Location ?? "Ej angivet")</p>
+            <p><strong>Beskrivning:</strong> @(item.Description ?? "Ej angivet")</p>
+            <p><strong>Mängd:</strong> @(item.WasteAmount != null ? $"{item.WasteAmount} m³" : "Ej angivet")</p>
+            <p><strong>Arbetare:</strong> @(item.Worker?.Name ?? "Ej angivet")</p>
+            <p><strong>Kund:</strong> @(item.Customer?.Name ?? "Ej angivet")</p>
+            <p><strong>Skapad av:</strong> @(item.CreatedBy ?? "Ej angivet")</p>
+            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+            <a asp-action="Details" asp-route-id="@item.Id">Detaljer</a> 
+            <a asp-action="Delete" asp-route-id="@item.Id">Radera</a>
+        </div>
+    }
+</div>

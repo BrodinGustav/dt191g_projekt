@@ -375,6 +375,43 @@ footer a:hover {
 
 /* MEDIA QUERIES */
 
+@media screen and (max-width: 768px) {
+  .tableSanitation {
+    display: none;  /*Döljer tabell vid mindre enheter*/
+  }
+
+  .sanitation-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .sanitation-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .sanitation-card p {
+    margin: 4px 0;
+    font-size: 14px;
+  }
+
+  .sanitation-card a {
+    display: inline-block;
+    margin-top: 6px;
+    color: #004466;
+    text-decoration: none;
+    font-weight: bold;
+  }
+}
+
+
+
+
+
 @media (max-width: 768px) {
   .navbar-collapse {
     flex-direction: column;

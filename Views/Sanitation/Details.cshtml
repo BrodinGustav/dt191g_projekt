@@ -37,7 +37,7 @@
             @Html.DisplayNameFor(model => model.WasteAmount)
         </dt>
         <dd class="col-sm-10">
-            @(Model.WasteAmount?.ToString() ?? "Ej angivet")
+            @(Model.WasteAmount?.ToString() + " m³" ?? "Ej angivet")
         </dd>
         
         <dt class="col-sm-2">
