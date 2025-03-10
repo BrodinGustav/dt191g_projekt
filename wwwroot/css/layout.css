@@ -1,39 +1,38 @@
-/* _content/dt191g_projekt/Views/Shared/_Layout.cshtml.rz.scp.css */
-
+﻿
 /* Main */
-body[b-6kek4s2dtt] {
+body {
   background-color: red !important;
 }
 
 
-main[b-6kek4s2dtt] {
+main {
   padding-bottom: 30px;
 }
 
 /*Nav*/
-header[b-6kek4s2dtt] {
+header {
   background-color: #ffffff;
   border-bottom: 1px solid #e5e5e5;
   padding: 10px 0;
 }
 
-.navigation[b-6kek4s2dtt]{
+.navigation{
   display:flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
-h1[b-6kek4s2dtt]{
+h1{
   font-family:18px;
 }
 
-h1[b-6kek4s2dtt], h4[b-6kek4s2dtt] {
+h1, h4 {
   font-family: 'Arial', sans-serif;
   color: #333;
 }
 
-.container[b-6kek4s2dtt] {
+.container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -42,12 +41,12 @@ h1[b-6kek4s2dtt], h4[b-6kek4s2dtt] {
 }
 
 
-p[b-6kek4s2dtt] {
+p {
   color: #666;
 }
 
 
-.tableSanitation[b-6kek4s2dtt]{
+.tableSanitation{
   display: flex;
   flex-direction: column;
 }
@@ -56,7 +55,7 @@ p[b-6kek4s2dtt] {
 
 
 /*footer*/
-footer[b-6kek4s2dtt] {
+footer {
   background-color: #f8f9fa;
   padding: 20px 0;
   text-align: center;
@@ -65,17 +64,17 @@ footer[b-6kek4s2dtt] {
   border-top: 1px solid #e5e5e5;
 }
 
-footer a[b-6kek4s2dtt] {
+footer a {
   color: #0077cc;
   text-decoration: none;
 }
 
-footer a:hover[b-6kek4s2dtt] {
+footer a:hover {
   text-decoration: underline;
 }
 
 /*Knappar*/
-.btn-primary[b-6kek4s2dtt] {
+.btn-primary {
   color: #fff;
   background-color: #0077cc;
   border: none;
@@ -85,11 +84,11 @@ footer a:hover[b-6kek4s2dtt] {
   cursor: pointer;
 }
 
-.btn-primary:hover[b-6kek4s2dtt] {
+.btn-primary:hover {
   background-color: #005fa3;
 }
 
-.btn-primary:focus[b-6kek4s2dtt] {
+.btn-primary:focus {
   outline: none;
 }
 
@@ -97,29 +96,29 @@ footer a:hover[b-6kek4s2dtt] {
 /* MEDIA QUERIES */
 
 @media (max-width: 768px) {
-  .navbar-collapse[b-6kek4s2dtt] {
+  .navbar-collapse {
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
     background-color: #fff;
   }
 
-  .navbar-toggler[b-6kek4s2dtt] {
+  .navbar-toggler {
     display: block;
     border: none;
     background-color: transparent;
   }
 
-  .navbar-toggler-icon[b-6kek4s2dtt] {
+  .navbar-toggler-icon {
     width: 30px;
     height: 3px;
   }
 
-  .container[b-6kek4s2dtt] {
+  .container {
     padding: 10px;
   }
 
-  .tableSanitation[b-6kek4s2dtt]{
+  .tableSanitation{
       width:50%;
   }
 }

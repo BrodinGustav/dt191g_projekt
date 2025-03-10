@@ -41,6 +41,8 @@ app.UseAuthorization();
 
 app.MapStaticAssets();
 
+app.UseStaticFiles();
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=sanitation}/{action=Index}/{id?}")

@@ -286,9 +286,7 @@ C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\dt191g_projekt.MvcAp
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\dt191g_projekt.RazorAssemblyInfo.cache
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\dt191g_projekt.RazorAssemblyInfo.cs
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\dt191g_projekt.sourcelink.json
-C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\scopedcss\bundle\dt191g_projekt.styles.css
-C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\scopedcss\projectbundle\dt191g_projekt.bundle.scp.css
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\ofa40bqe71-o84wqeh1og.gz
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\j9swiz3yzq-90yqlj465b.gz
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\vltxs1u3vm-xtxxf3hu2r.gz
@@ -348,7 +346,6 @@ C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\tpsq5dibu
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\t0qo7o574p-dd6z7egasc.gz
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\b9lhb08218-5pze98is44.gz
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\yfc7ypekbg-mlv21k5csn.gz
-C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\p7vbysp8b3-b9sayid5wm.gz
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\7yyzgdosqf-61n19gt1b8.gz
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\s7er0945kk-xtxxf3hu2r.gz
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\7i7g87ojdh-agp80tu62r.gz
@@ -407,8 +404,6 @@ C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\s69wah1uj
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\x6vixvjwbv-dd6z7egasc.gz
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\u5fbkknbmd-5pze98is44.gz
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\usroko1jen-mlv21k5csn.gz
-C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\km9dqgvnxv-wtipw1pppy.gz
-C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\it7oqiuai1-wtipw1pppy.gz
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\staticwebassets.build.json
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\staticwebassets.development.json
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\staticwebassets.build.endpoints.json
@@ -425,3 +420,5 @@ C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\dt191g_projekt.pdb
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\dt191g_projekt.genruntimeconfig.cache
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\ref\dt191g_projekt.dll
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\bin\Debug\net9.0\app.db
+C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\p7vbysp8b3-904jbiu5ob.gz
+C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\wusmy6cup3-acl2pkccy8.gz

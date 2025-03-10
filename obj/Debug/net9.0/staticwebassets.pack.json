@@ -1,8 +1,8 @@
 {
   "Files": [
     {
-      "Id": "C:\\Utbildning\\dt191g_ASPNET\\dt191g_projekt\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\dt191g_projekt.bundle.scp.css",
-      "PackagePath": "staticwebassets\\dt191g_projekt.wtipw1pppy.bundle.scp.css"
+      "Id": "C:\\Utbildning\\dt191g_ASPNET\\dt191g_projekt\\wwwroot\\css\\layout.css",
+      "PackagePath": "staticwebassets\\css\\layout.css"
     },
     {
       "Id": "C:\\Utbildning\\dt191g_ASPNET\\dt191g_projekt\\wwwroot\\css\\site.css",

@@ -1,15 +1,15 @@
 @model IEnumerable<dt191g_projekt.Models.SanitationModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Saneringar";
 }
 
-<h1>Index</h1>
+<h1>Saneringar</h1>
 
 <p>
     <a asp-action="Create">Lägg till ny sanering</a>
 </p>
-<table class="table">
+<table class="tableSanitation">
     <thead>
         <tr>
             <th>
@@ -33,7 +33,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.CreatedBy)
             </th>
-            <th>
         </tr>
     </thead>
     <tbody>
@@ -63,8 +62,8 @@
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">Detaljer</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Radera</a>
                 </td>
             </tr>
         }
