@@ -16,7 +16,8 @@ main {
   align-items: center;
   min-height: 70vh;
   background-color: #f1f1f1;
-  gap:2em;
+  padding-bottom: 30px;
+  gap:1em;
 }
 
 html {
