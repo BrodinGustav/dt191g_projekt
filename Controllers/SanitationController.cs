@@ -84,8 +84,7 @@ namespace dt191g_projekt.Controllers
 
             //Kontroll om en post med samma SanitationType, Location och Description redan finns 
             var existingSanitation = await _context.Sanitations
-                .FirstOrDefaultAsync(s => s.SanitationType == sanitation.SanitationType
-                                          && s.Location == sanitation.Location
+                .FirstOrDefaultAsync(s => s.Location == sanitation.Location
                                           && s.Description == sanitation.Description);
 
             //Om post finns, visa felmeddelande
@@ -148,18 +147,30 @@ namespace dt191g_projekt.Controllers
 
             if (ModelState.IsValid)
             {
-                //Kontroll om post med samma SanitationType, Location och Description finns
+                //Hämtar befintliga posten från databasen för att bevara CreatedBy
                 var existingSanitation = await _context.Sanitations
-                    .Where(s => s.SanitationType == sanitationModel.SanitationType &&
-                                s.Location == sanitationModel.Location &&
-                                s.Description == sanitationModel.Description &&
-                                s.Id != sanitationModel.Id) //Exkluderar nuvarande posten
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(s => s.Id == id);
+
+                if (existingSanitation == null)
+                {
+                    return NotFound();
+                }
+
+                //Kontroll om post med samma SanitationType, Location och Description finns
+                var duplicatedSanitation = await _context.Sanitations
+                    .Where(s => s.Location == sanitationModel.Location
+                            && s.Description == sanitationModel.Description &&
+                            s.Id != sanitationModel.Id) //Exkluderar nuvarande posten
                     .FirstOrDefaultAsync();
 
-                if (existingSanitation != null)
+
+                if (duplicatedSanitation != null)
                 {
                     //Om post finns, skicka felmeddelande i ModelState
-                    ModelState.AddModelError("", "En liknande order med samma SanitationType, Location och Description finns redan.");
+                    ModelState.AddModelError("", "En liknande order med samma beskrivning finns redan.");
+
+                    sanitationModel.CreatedBy = existingSanitation.CreatedBy;
 
                     //Lägger till listor för Worker och Customer för att undvika tomma listor
                     ViewBag.WorkerId = new SelectList(_context.Workers, "Id", "Name", sanitationModel.WorkerId);
@@ -173,7 +184,10 @@ namespace dt191g_projekt.Controllers
 
                 try
                 {
-                    //Om ok
+                    //Bevara CreatedBy
+                    sanitationModel.CreatedBy = existingSanitation.CreatedBy;
+
+                    //Om ok, uppdatera databasen
                     _context.Update(sanitationModel);
                     await _context.SaveChangesAsync();
                 }

@@ -56,6 +56,23 @@ namespace dt191g_projekt.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Address,PhoneNumber")] CustomerModel customerModel)
         {
+
+              if (_context?.Customers == null)
+            {
+                return NotFound();
+            }
+
+            //Kontroll om en kund med samma Name redan finns 
+            var existingCustomer = await _context.Customers
+                .FirstOrDefaultAsync(c => c.Name == customerModel.Name &&
+                                     c.PhoneNumber == customerModel.PhoneNumber);
+
+            //Om post finns, visa felmeddelande
+            if (existingCustomer != null)
+            {
+                ModelState.AddModelError(string.Empty, "En kund med samma namn och telefonnummer finns redan.");
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(customerModel);
@@ -92,6 +109,24 @@ namespace dt191g_projekt.Controllers
             {
                 return NotFound();
             }
+
+              //Kontroll om post med samma SanitationType, Location och Description finns
+                var duplicatedCustomer = await _context.Customers
+                    .Where(c => c.Name == customerModel.Name &&
+                                c.PhoneNumber == customerModel.PhoneNumber &&
+                                c.Id != customerModel.Id) //Exkluderar nuvarande posten
+                    .FirstOrDefaultAsync();
+
+
+                if (duplicatedCustomer != null)
+                {
+                    //Om post finns, skicka felmeddelande i ModelState
+                    ModelState.AddModelError("", "En kunde med samma namn och telefonnummer finns redan.");
+
+                                //Skicka användare till Edit-vyn och visa felmeddelandet
+                    return View(customerModel);
+                
+                }
 
             if (ModelState.IsValid)
             {

@@ -56,6 +56,24 @@ namespace dt191g_projekt.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Role,PhoneNumber")] WorkerModel workerModel)
         {
+
+            
+            if (_context?.Workers == null)
+            {
+                return NotFound();
+            }
+
+            //Kontroll om en post med samma Phonenumber redan finns 
+            var existingWorker = await _context.Workers
+                .FirstOrDefaultAsync(w => w.PhoneNumber == workerModel.PhoneNumber);
+                                        
+
+            //Om post finns, visa felmeddelande
+            if (existingWorker != null)
+            {
+                ModelState.AddModelError(string.Empty, "En sanerare med samma telefonnummer finns redan.");
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(workerModel);
@@ -95,6 +113,23 @@ namespace dt191g_projekt.Controllers
 
             if (ModelState.IsValid)
             {
+
+                //Kontroll om sanerare med samma PhoneNumber finns
+                var duplicatedWorker = await _context.Workers
+                    .Where(w => w.PhoneNumber == workerModel.PhoneNumber &&
+                                w.Id != workerModel.Id) //Exkluderar nuvarande posten
+                    .FirstOrDefaultAsync();
+
+
+                if (duplicatedWorker != null)
+                {
+                    //Om sanerare finns, skicka felmeddelande i ModelState
+                    ModelState.AddModelError("", "En sanerare med samma telefonnummer finns redan.");
+
+                 //Skicka användare till Edit-vyn och visa felmeddelandet
+                    return View(workerModel);
+                }
+                
                 try
                 {
                     _context.Update(workerModel);

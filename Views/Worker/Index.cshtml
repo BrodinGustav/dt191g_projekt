@@ -45,3 +45,19 @@
 }
     </tbody>
 </table>
+
+
+<!--Kortlayout för små enheter -->
+<div class="table-cards">
+    @foreach (var item in Model)
+    {
+        <div class="table-card">
+            <p><strong>Namn:</strong> @(item.Name ?? "Ej angivet")</p>
+            <p><strong>Roll:</strong> @(item.Role ?? "Ej angivet")</p>
+            <p><strong>Telefonnummer:</strong> @(item.PhoneNumber)</p>
+            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+            <a asp-action="Details" asp-route-id="@item.Id">Detaljer</a> 
+            <a asp-action="Delete" asp-route-id="@item.Id">Radera</a>
+        </div>
+    }
+</div>

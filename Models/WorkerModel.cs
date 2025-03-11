@@ -6,13 +6,14 @@ namespace SanitationApp.Models
     public class WorkerModel
     {
         public int Id { get; set; } 
-
+         [Display(Name = "Namn")]
         [Required]
         public string? Name { get; set; } 
-
+         [Display(Name = "Roll")]
         [Required]
         public string? Role { get; set; } 
         [Required]
+         [Display(Name = "Telefonnummer")]
         public int? PhoneNumber { get; set; } 
 
         //En arbetare kan ha flera saneringsarbeten
