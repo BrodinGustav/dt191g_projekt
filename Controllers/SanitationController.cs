@@ -77,7 +77,7 @@ namespace dt191g_projekt.Controllers
         public async Task<IActionResult> Create(SanitationModel sanitation)
         {
 
-             if (_context?.Sanitations == null)
+            if (_context?.Sanitations == null)
             {
                 return NotFound();
             }
@@ -103,7 +103,7 @@ namespace dt191g_projekt.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            
+
             ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name", sanitation.CustomerId);
             ViewData["WorkerId"] = new SelectList(_context.Workers, "Id", "Name", sanitation.WorkerId);
             return View(sanitation);
@@ -146,15 +146,35 @@ namespace dt191g_projekt.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,SanitationType,Location,Description,WasteAmount")] SanitationModel sanitationModel)
         {
-            if (id != sanitationModel.Id)
+            if (id != sanitationModel.Id || _context?.Sanitations == null)
             {
                 return NotFound();
             }
 
+
             if (ModelState.IsValid)
             {
+                //Kontroll om post med samma SanitationType, Location och Description finns
+                var existingSanitation = await _context.Sanitations
+                    .Where(s => s.SanitationType == sanitationModel.SanitationType &&
+                                s.Location == sanitationModel.Location &&
+                                s.Description == sanitationModel.Description &&
+                                s.Id != sanitationModel.Id) //Exkluderar nuvarande posten
+                    .FirstOrDefaultAsync();
+
+                if (existingSanitation != null)
+                {
+                    //Om post finns, skicka felmeddelande i ModelState
+                    ModelState.AddModelError("", "En liknande order med samma SanitationType, Location och Description finns redan.");
+                    
+                    //Skicka användare till Edit-vyn och visa felmeddelandet
+                    return View(sanitationModel);
+                }
+
+
                 try
                 {
+                    //Om ok
                     _context.Update(sanitationModel);
                     await _context.SaveChangesAsync();
                 }
