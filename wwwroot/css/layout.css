@@ -386,7 +386,7 @@ footer a:hover {
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 768px) {
-  .tableSanitation {
+  .tableData {
     display: none;  /*Döljer tabell vid mindre enheter*/
   }
 

@@ -123,12 +123,6 @@ namespace dt191g_projekt.Controllers
        .Include(s => s.Customer) // Laddar Customer
        .FirstOrDefaultAsync(m => m.Id == id);
 
-            var sanitationModel = await _context.Sanitations.FindAsync(id);
-            if (sanitationModel == null)
-            {
-                return NotFound();
-            }
-
             if (sanitation == null)
             {
                 return NotFound();
@@ -144,7 +138,7 @@ namespace dt191g_projekt.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,SanitationType,Location,Description,WasteAmount")] SanitationModel sanitationModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,SanitationType,Location,Description,WasteAmount,WorkerId,CustomerId")] SanitationModel sanitationModel)
         {
             if (id != sanitationModel.Id || _context?.Sanitations == null)
             {
@@ -166,11 +160,16 @@ namespace dt191g_projekt.Controllers
                 {
                     //Om post finns, skicka felmeddelande i ModelState
                     ModelState.AddModelError("", "En liknande order med samma SanitationType, Location och Description finns redan.");
-                    
+
+                    //Lägger till listor för Worker och Customer för att undvika tomma listor
+                    ViewBag.WorkerId = new SelectList(_context.Workers, "Id", "Name", sanitationModel.WorkerId);
+                    ViewBag.CustomerId = new SelectList(_context.Customers, "Id", "Name", sanitationModel.CustomerId);
+
+
+
                     //Skicka användare till Edit-vyn och visa felmeddelandet
                     return View(sanitationModel);
                 }
-
 
                 try
                 {
@@ -191,6 +190,12 @@ namespace dt191g_projekt.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+
+            //Laddar dropdown-menyer igen vid valideringsfel
+            ViewBag.WorkerId = new SelectList(_context.Workers, "Id", "Name", sanitationModel.WorkerId);
+            ViewBag.CustomerId = new SelectList(_context.Customers, "Id", "Name", sanitationModel.CustomerId);
+
             return View(sanitationModel);
         }
 
