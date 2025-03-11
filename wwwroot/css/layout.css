@@ -1,4 +1,13 @@
-﻿/*Nav*/
+﻿/*Varningsmeddelande*/
+.text-danger{
+  color:red;
+}
+
+.text-danger ul {
+  list-style-type: none;
+}
+
+/*Nav*/
 header {
   background-color: #ffffff;
   border-bottom: 1px solid #e5e5e5;

@@ -76,6 +76,24 @@ namespace dt191g_projekt.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(SanitationModel sanitation)
         {
+
+             if (_context?.Sanitations == null)
+            {
+                return NotFound();
+            }
+
+            //Kontroll om en post med samma SanitationType, Location och Description redan finns 
+            var existingSanitation = await _context.Sanitations
+                .FirstOrDefaultAsync(s => s.SanitationType == sanitation.SanitationType
+                                          && s.Location == sanitation.Location
+                                          && s.Description == sanitation.Description);
+
+            //Om post finns, visa felmeddelande
+            if (existingSanitation != null)
+            {
+                ModelState.AddModelError(string.Empty, "En liknande order existerar redan.");
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(sanitation);
@@ -85,6 +103,7 @@ namespace dt191g_projekt.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            
             ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name", sanitation.CustomerId);
             ViewData["WorkerId"] = new SelectList(_context.Workers, "Id", "Name", sanitation.WorkerId);
             return View(sanitation);
