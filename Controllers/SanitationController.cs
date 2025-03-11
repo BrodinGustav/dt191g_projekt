@@ -41,12 +41,14 @@ namespace dt191g_projekt.Controllers
         // GET: Sanitation/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (id == null || _context?.Sanitations == null)
             {
                 return NotFound();
             }
 
             var sanitation = await _context.Sanitations
+
+
                    .Include(s => s.Worker)  // Inkluderar Worker
                    .Include(s => s.Customer) // Inkluderar Customer
                    .FirstOrDefaultAsync(m => m.Id == id);
@@ -56,22 +58,15 @@ namespace dt191g_projekt.Controllers
                 return NotFound();
             }
 
-            var sanitationModel = await _context.Sanitations
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (sanitationModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(sanitationModel);
+            return View(sanitation);
         }
 
         [Authorize]
         // GET: Sanitation/Create
         public IActionResult Create()
         {
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name");
-            ViewData["WorkerId"] = new SelectList(_context.Workers, "Id", "Name");
+            ViewBag.CustomerId = new SelectList(_context.Customers, "Id", "Name");
+            ViewBag.WorkerId = new SelectList(_context.Workers, "Id", "Name");
             return View();
         }
 
@@ -99,12 +94,7 @@ namespace dt191g_projekt.Controllers
         // GET: Sanitation/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            if (_context.Sanitations == null)
+            if (id == null || _context?.Sanitations == null)
             {
                 return NotFound();
             }
@@ -119,8 +109,15 @@ namespace dt191g_projekt.Controllers
             {
                 return NotFound();
             }
-            ViewData["WorkerId"] = new SelectList(_context.Workers, "Id", "Name", sanitation.WorkerId);
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name", sanitation.CustomerId);
+
+            if (sanitation == null)
+            {
+                return NotFound();
+            }
+
+            //Skickar lista på Workers och Customer för dropdown-meny
+            ViewBag.WorkerId = new SelectList(_context.Workers, "Id", "Name", sanitation.WorkerId);
+            ViewBag.CustomerId = new SelectList(_context.Customers, "Id", "Name", sanitation.CustomerId);
             return View(sanitation);
         }
 

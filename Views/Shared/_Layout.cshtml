@@ -19,7 +19,21 @@
                 <div>
                     <ul>
                         <li class>
-                            <a asp-area="" asp-controller="Sanitation" asp-action="Index">Saneringar</a>
+                            @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Sanitation")    /*Kontroll för att dölja aktuell sida (controller)*/
+                            {
+                                <a asp-area="" asp-controller="Sanitation" asp-action="Index">Saneringar
+                                </a>
+                            }
+                            @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Customer")
+                            {
+                                <a asp-area="" asp-controller="Customer" asp-action="Index">Kunder
+                                </a>
+                            }
+                            @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Worker")
+                            {
+                                <a asp-area="" asp-controller="Worker" asp-action="Index">Sanerare
+                                </a>
+                            }
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -30,19 +44,19 @@
 
     <div class="container">
         <main>
-            @RenderBody()
-        </main>
+                @RenderBody()
+    </main>
     </div>
 
-    <footer>
-        <div class="container">
-            &copy; 2025 - dt191g_projekt - <a asp-area="" asp-controller="Sanitation" asp-action="Index">Saneringar</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+        <footer>
+            <div class="container">
+                &copy; 2025 - dt191g_projekt - <a asp-area="" asp-controller="Sanitation" asp-action="Index">Saneringar</a>
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-</body>
+    </body>
 
-</html>
+    </html>

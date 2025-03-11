@@ -1,15 +1,15 @@
 @model IEnumerable<SanitationApp.Models.WorkerModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Sanerare";
 }
 
-<h1>Index</h1>
+<h1>Sanerare</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Lägg till</a>
 </p>
-<table class="table">
+<table class="tableData">
     <thead>
         <tr>
             <th>
@@ -37,9 +37,9 @@
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                <a asp-action="Details" asp-route-id="@item.Id">Detaljer</a> 
+                <a asp-action="Delete" asp-route-id="@item.Id">Radera</a>
             </td>
         </tr>
 }

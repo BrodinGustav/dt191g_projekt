@@ -69,7 +69,7 @@ button:hover {
 /*SANERINGAR*/
 
 /*Tabell*/
-.tableSanitation {
+.tableData {
   width: 100%;
   border-collapse: collapse;
   font-family: Arial, sans-serif;
@@ -79,52 +79,52 @@ button:hover {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.tableSanitation thead {
+.tableData thead {
   background-color: #004466;
   color: white;
   text-align: left;
 }
 
-.tableSanitation th,
-.tableSanitation td {
+.tableData th,
+.tableData td {
   padding: 12px;
   border-bottom: 1px solid #ddd;
 }
 
-.tableSanitation tbody tr:hover {
+.tableData tbody tr:hover {
   background-color: #f1f1f1;
 }
 
-.tableSanitation a {
+.tableData a {
   color: #004466;
   text-decoration: none;
   font-weight: bold;
 }
 
-.tableSanitation a:hover {
+.tableData a:hover {
   text-decoration: underline;
 }
 
 /*Ger färg till varje jämn rad*/
-.tableSanitation tbody tr:nth-child(even) {
+.tableData tbody tr:nth-child(even) {
   background-color: #eef2f3;
 }
 
-.tableSanitation th {
+.tableData th {
   text-transform: uppercase;
   font-size: 14px;
 }
 
-.tableSanitation td {
+.tableData td {
   font-size: 14px;
 }
 
 /*Centrera element i sista kolumn*/
-.tableSanitation td:last-child {
+.tableData td:last-child {
   text-align: center;
 }
 
-.tableSanitation td a {
+.tableData  td a {
   margin-right: 8px;
 }
 
@@ -282,6 +282,7 @@ div a:hover {
 
 /*Manage (Konto)*/
 /*Navigering*/
+
 ul.nav {
   list-style-type: none;
   padding: 2em;
@@ -408,11 +409,6 @@ footer a:hover {
   }
 }
 
-
-
-
-
-@media (max-width: 768px) {
   .navbar-collapse {
     flex-direction: column;
     align-items: flex-start;
@@ -435,7 +431,15 @@ footer a:hover {
     padding: 10px;
   }
 
-  .tableSanitation {
+  .tableData {
     width: 50%;
+  }
+
+
+
+@media screen and (min-width: 768px) {
+
+  .sanitation-card {
+    display: none;
   }
 }

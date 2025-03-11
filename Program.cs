@@ -45,7 +45,7 @@ app.UseStaticFiles();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=sanitation}/{action=Index}/{id?}")
+    pattern: "{controller=Sanitation}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 app.MapRazorPages()
