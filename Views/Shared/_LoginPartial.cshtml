@@ -5,16 +5,22 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
+ 
+ /*Om användaren är inloggad*/
+
     <li class="nav-item">
         <a  id="welcome-text" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Välkommen @User.Identity?.Name!</a>
     </li>
     <li class="nav-item">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Views/Sanitation", new { area = "" })">
+            <button  type="submit" class="nav-link btn btn-link text-dark">Logga ut</button>
         </form>
     </li>
 }
+
 else
 {
+    <!--Om inte inloggad-->
     <li class="nav-item">
         <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Registrera</a>
     </li>
@@ -23,5 +29,3 @@ else
     </li>
 }
 </ul>
-
-    <button  type="submit" class="nav-link btn btn-link text-dark">Logga ut</button>

@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+    
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -17,12 +21,12 @@
             <div class="nav-container">
                  <button class="hamburger" id="menuToggle">&#9776;</button>
                 <div>
-                    @if (!Context.Request.Path.StartsWithSegments("/Account/Login"))
+                  @*Kontrollerat om användaren är inloggad innan du visar länkar *@
+                    @if (SignInManager.IsSignedIn(User))
                             {
 
                     <ul class="nav-menu" id="navMenu">
-                                @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Sanitation") /*Kontroll för
-                                                        att dölja aktuell sida (controller)*/
+                                @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Sanitation") /*Kontroll för att dölja aktuell sida (controller)*/
                                 { 
                                     <li>
                                     <a asp-area="" asp-controller="Sanitation" asp-action="Index">Saneringar</a>
@@ -42,7 +46,7 @@
                                 }
                     </ul>
                     }
-
+                    @*Importerar _LoginPartial för korrekt inloggningsinformation*@
                     <partial name="_LoginPartial" />
                 </div>
             </div>
