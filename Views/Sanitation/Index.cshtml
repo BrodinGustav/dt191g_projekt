@@ -72,10 +72,10 @@
 
 
 <!--Kortlayout för små enheter -->
-<div class="sanitation-cards">
+<div class="table-cards">
     @foreach (var item in Model)
     {
-        <div class="sanitation-card">
+        <div class="table-card">
             <p><strong>Typ:</strong> @(item.SanitationType ?? "Ej angivet")</p>
             <p><strong>Plats:</strong> @(item.Location ?? "Ej angivet")</p>
             <p><strong>Beskrivning:</strong> @(item.Description ?? "Ej angivet")</p>

@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-    
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,33 +19,42 @@
     <header>
         <nav>
             <div class="nav-container">
-                 <button class="hamburger" id="menuToggle">&#9776;</button>
-                <div>
-                  @*Kontrollerat om användaren är inloggad innan du visar länkar *@
-                    @if (SignInManager.IsSignedIn(User))
-                            {
 
-                    <ul class="nav-menu" id="navMenu">
-                                @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Sanitation") /*Kontroll för att dölja aktuell sida (controller)*/
-                                { 
-                                    <li>
+                @*Visa hamburgermenyn endast om användaren är inloggad *@
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <button class="hamburger" id="menuToggle">&#9776;</button>
+                }
+                
+                <div>
+                
+                    @*Kontrollerat om användaren är inloggad innan du visar länkar *@
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+
+                        <ul class="nav-menu" id="navMenu">
+                            @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Sanitation") /*Kontroll för att
+                                                dölja aktuell sida (controller)*/
+                            {
+                                <li>
                                     <a asp-area="" asp-controller="Sanitation" asp-action="Index">Saneringar</a>
-                                    </li>
-                                }
-                                @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Customer")
-                                {
-                                    <li>
+                                </li>
+                            }
+                            @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Customer")
+                            {
+                                <li>
                                     <a asp-area="" asp-controller="Customer" asp-action="Index">Kunder</a>
-                                    </li>
-                                }
-                                @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Worker")
-                                {
+                                </li>
+                            }
+                            @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Worker")
+                            {
                                 <li>
                                     <a asp-area="" asp-controller="Worker" asp-action="Index">Sanerare</a>
                                 </li>
-                                }
-                    </ul>
+                            }
+                        </ul>
                     }
+
                     @*Importerar _LoginPartial för korrekt inloggningsinformation*@
                     <partial name="_LoginPartial" />
                 </div>

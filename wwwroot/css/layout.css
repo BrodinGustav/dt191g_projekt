@@ -78,8 +78,7 @@ h4 {
 }
 
 .container {
-  width: 100%;
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 20px;
   padding-bottom: 30px;
@@ -176,7 +175,8 @@ button:hover {
 }
 
 /*Knappelement*/
-.addSanitationbtn a {
+.addSanitationbtn {
+  display: flex;
   width: 100%;
 }
 
@@ -413,7 +413,7 @@ footer a:hover {
 
 /* MEDIA QUERIES */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
 
   /*_LoginPartial*/
   .navbar-nav {
@@ -424,11 +424,12 @@ footer a:hover {
   .navbar-nav li {
     width: 20vw;
   }
-
+  /*_LoginPartial slut*/
 
   .hamburger {
     /*Visa hamburgarare*/
     display: block;
+    margin:0;
   }
 
   .nav-menu {
@@ -453,6 +454,8 @@ footer a:hover {
     display: flex;
     width: 30vw;
   }
+
+ /*Hamburgare slut*/
 
 
   .tableData {
@@ -487,37 +490,26 @@ footer a:hover {
     font-weight: bold;
   }
 
-  .navbar-collapse {
+  .nav-container {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    background-color: #fff;
-  }
-
-  .navbar-toggler {
-    display: block;
-    border: none;
-    background-color: transparent;
-  }
-
-  .navbar-toggler-icon {
-    width: 30px;
-    height: 3px;
+    justify-content: center;
+    align-items: center;
   }
 
   .container {
     padding: 10px;
   }
 
-  .tableData {
-    width: 50%;
+  #welcome-text{
+    margin:0;
   }
 
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 900px) {
 
-  .sanitation-card {
+  .table-card {
     display: none;
   }
 }
