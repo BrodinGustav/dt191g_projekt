@@ -1,4 +1,16 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿//Hamburgarmeny
+document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.getElementById("navMenu");
 
-// Write your JavaScript code.
+    menuToggle.addEventListener("click", function () {
+        navMenu.classList.toggle("show"); // Växla klass för att visa/dölja menyn
+    });
+});
+
+ //Stäng menyn vid klick utanför
+ document.addEventListener("click", function (event) {
+    if (!menuToggle.contains(event.target) && !navMenu.contains(event.target)) {
+        navMenu.classList.remove("show");
+    }
+});

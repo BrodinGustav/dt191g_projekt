@@ -347,7 +347,6 @@ C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\t0qo7o574
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\b9lhb08218-5pze98is44.gz
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\yfc7ypekbg-mlv21k5csn.gz
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\7yyzgdosqf-61n19gt1b8.gz
-C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\s7er0945kk-xtxxf3hu2r.gz
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\7i7g87ojdh-agp80tu62r.gz
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\zikk0sguvb-st1cbwfwo5.gz
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\0nvwmwm9mz-unj9p35syc.gz
@@ -421,4 +420,5 @@ C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\dt191g_projekt.genru
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\ref\dt191g_projekt.dll
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\bin\Debug\net9.0\app.db
 C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\p7vbysp8b3-e0pcwvduyw.gz
-C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\wusmy6cup3-2xcgvch6a5.gz
+C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\wusmy6cup3-kyqvtpvlad.gz
+C:\Utbildning\dt191g_ASPNET\dt191g_projekt\obj\Debug\net9.0\compressed\s7er0945kk-c2tshpihdg.gz

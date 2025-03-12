@@ -1,6 +1,6 @@
 ﻿/*Varningsmeddelande*/
-.text-danger{
-  color:red;
+.text-danger {
+  color: red;
 }
 
 .text-danger ul {
@@ -8,26 +8,52 @@
 }
 
 /*Nav*/
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.nav-menu li {
+  display: inline-block;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: white;
+  padding: 10px 15px;
+  width:20vw;
+}
+
+.hamburger {
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: none;
+  /* Dold på stora skärmar */
+}
+
 header {
-  background-color: #ffffff;
   border-bottom: 1px solid #e5e5e5;
   padding: 10px 0;
-  width:100%;
+  width: 100%;
 }
 
-header ul a {
-  width: 20%;
-  text-decoration: none;
-  list-style-type: none;
-}
-
-header ul li {
-  text-decoration: none;
-  list-style-type: none;
-}
 
 h1 {
-  font-family: 18px;
+  font-size: 18px;
 }
 
 h1,
@@ -52,26 +78,26 @@ p {
 }
 
 
-button{
-display: flex;
-margin:0 auto;
-margin-top:2em;
-background-color: orange;
-border-radius:20%;
-padding:0.5em;
-margin-bottom:2em;
+button {
+  display: flex;
+  margin: 0 auto;
+  margin-top: 2em;
+  background-color: orange;
+  border-radius: 20%;
+  padding: 0.5em;
+  margin-bottom: 2em;
 }
 
 button:hover {
-  background-color:rgb(226, 149, 5); 
-  color:white;
+  background-color: rgb(226, 149, 5);
+  color: white;
 }
 
-#welcome-text{
+#welcome-text {
   background-color: transparent;
-  color:black;
-  font-size:2em;
-  font-family:Arial, Helvetica, sans-serif;
+  color: white;
+  font-size: 2em;
+  font-family: Arial, Helvetica, sans-serif;
   text-shadow: 2px 2px 10px orange;
 }
 
@@ -133,13 +159,13 @@ button:hover {
   text-align: center;
 }
 
-.tableData  td a {
+.tableData td a {
   margin-right: 8px;
 }
 
 /*Knappelement*/
-.addSanitationbtn a{
-  width:100%;
+.addSanitationbtn a {
+  width: 100%;
 }
 
 
@@ -227,7 +253,7 @@ h4 {
   text-align: center;
   color: #007bff;
   font-size: 3em;
-  margin-bottom:0;
+  margin-bottom: 0;
 }
 
 /*Definition list (dl) styling*/
@@ -256,9 +282,9 @@ dd {
 /*Länkar*/
 div a {
   display: flex;
-justify-content: center;
-align-items: center;
-margin:0 auto;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
   margin-top: 10px;
   padding: 8px 12px;
   text-decoration: none;
@@ -297,10 +323,10 @@ ul.nav {
   padding: 2em;
   margin: 0;
   width: 500px;
-  background-color: #f4f4f4; 
+  background-color: #f4f4f4;
   border-radius: 5px;
-  box-shadow:2px 2px 10px black;
-  margin:0 auto;
+  box-shadow: 2px 2px 10px black;
+  margin: 0 auto;
 }
 
 /*Menylänkar*/
@@ -309,27 +335,27 @@ ul.nav .nav-link {
   padding: 10px;
   color: #333;
   text-decoration: none;
-  border-radius: 4px; 
-  background-color: #e2e2e2; 
+  border-radius: 4px;
+  background-color: #e2e2e2;
   transition: background-color 0.3s ease;
 }
 
 /*Aktiv länk*/
 ul.nav .nav-link.active,
 ul.nav .nav-link:hover {
-  background-color: #007bff; 
+  background-color: #007bff;
   color: white;
 }
 
 
 ul.nav .nav-link:focus {
   outline: none;
-  background-color: #0056b3; 
+  background-color: #0056b3;
 }
 
 /*Länk markerad */
 ul.nav .nav-link#profile {
-  font-weight: bold; 
+  font-weight: bold;
 }
 
 
@@ -341,7 +367,7 @@ footer {
   font-size: 14px;
   color: #666;
   border-top: 1px solid #e5e5e5;
-  width:100%;
+  width: 100%;
 }
 
 footer a {
@@ -376,65 +402,95 @@ footer a:hover {
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 768px) {
-  .tableData {
-    display: none;  /*Döljer tabell vid mindre enheter*/
-  }
 
-  .table-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .table-card {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    padding: 12px;
-    border-radius: 8px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .table-card p {
-    margin: 4px 0;
-    font-size: 14px;
-  }
-
-  .sanitation-card a {
-    display: inline-block;
-    margin-top: 6px;
-    color: #004466;
-    text-decoration: none;
-    font-weight: bold;
-  }
-}
-
-  .navbar-collapse {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    background-color: #fff;
-  }
-
-  .navbar-toggler {
+  .hamburger {
+    /*Visa hamburgarare*/
     display: block;
-    border: none;
-    background-color: transparent;
   }
 
-  .navbar-toggler-icon {
-    width: 30px;
-    height: 3px;
+  .nav-menu {
+    /*Dölj menyn som standard */
+    display: none;
+    flex-direction: column;
+    background-color: #333;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    padding: 10px 0;
   }
 
-  .container {
+  .nav-menu li {
+    text-align: center;
     padding: 10px;
   }
 
-  .tableData {
-    width: 50%;
+  .nav-menu.show {
+    /*Visa menyn när klassen 'show' läggs till*/
+    display: flex;
+    width:30vw;
   }
 
 
+.tableData {
+  /*Döljer tabell vid mindre enheter*/
+  display: none;
+}
+
+.table-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.table-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table-card p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.table-card a {
+  display: inline-block;
+  margin-top: 6px;
+  color: #004466;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar-collapse {
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  background-color: #fff;
+}
+
+.navbar-toggler {
+  display: block;
+  border: none;
+  background-color: transparent;
+}
+
+.navbar-toggler-icon {
+  width: 30px;
+  height: 3px;
+}
+
+.container {
+  padding: 10px;
+}
+
+.tableData {
+  width: 50%;
+}
+
+}
 
 @media screen and (min-width: 768px) {
 

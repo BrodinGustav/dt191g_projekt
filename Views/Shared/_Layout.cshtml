@@ -7,7 +7,6 @@
     <title>@ViewData["Title"] - dt191g_projekt</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/dt191g_projekt.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
 
 </head>
@@ -15,27 +14,35 @@
 <body>
     <header>
         <nav>
-            <div>
+            <div class="nav-container">
+                 <button class="hamburger" id="menuToggle">&#9776;</button>
                 <div>
-                    <ul>
-                        <li class>
-                            @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Sanitation")    /*Kontroll för att dölja aktuell sida (controller)*/
+                    @if (!Context.Request.Path.StartsWithSegments("/Account/Login"))
                             {
-                                <a asp-area="" asp-controller="Sanitation" asp-action="Index">Saneringar
-                                </a>
-                            }
-                            @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Customer")
-                            {
-                                <a asp-area="" asp-controller="Customer" asp-action="Index">Kunder
-                                </a>
-                            }
-                            @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Worker")
-                            {
-                                <a asp-area="" asp-controller="Worker" asp-action="Index">Sanerare
-                                </a>
-                            }
-                        </li>
+
+                    <ul class="nav-menu" id="navMenu">
+                                @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Sanitation") /*Kontroll för
+                                                        att dölja aktuell sida (controller)*/
+                                { 
+                                    <li>
+                                    <a asp-area="" asp-controller="Sanitation" asp-action="Index">Saneringar</a>
+                                    </li>
+                                }
+                                @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Customer")
+                                {
+                                    <li>
+                                    <a asp-area="" asp-controller="Customer" asp-action="Index">Kunder</a>
+                                    </li>
+                                }
+                                @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Worker")
+                                {
+                                <li>
+                                    <a asp-area="" asp-controller="Worker" asp-action="Index">Sanerare</a>
+                                </li>
+                                }
                     </ul>
+                    }
+
                     <partial name="_LoginPartial" />
                 </div>
             </div>
@@ -44,19 +51,19 @@
 
     <div class="container">
         <main>
-                @RenderBody()
-    </main>
+            @RenderBody()
+        </main>
     </div>
 
-        <footer>
-            <div class="container">
-                &copy; 2025 - dt191g_projekt - <a asp-area="" asp-controller="Sanitation" asp-action="Index">Saneringar</a>
-            </div>
-        </footer>
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
+    <footer>
+        <div class="container">
+            &copy; 2025 - dt191g_projekt - <a asp-area="" asp-controller="Sanitation" asp-action="Index">Saneringar</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-    </body>
+</body>
 
-    </html>
+</html>
