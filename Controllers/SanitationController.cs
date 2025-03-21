@@ -93,14 +93,60 @@ namespace dt191g_projekt.Controllers
                 ModelState.AddModelError(string.Empty, "En liknande order existerar redan.");
             }
 
+
+            //Kontroll om obligatoriska fält är ifyllda
+            if (string.IsNullOrWhiteSpace(sanitation.SanitationType))
+            {
+                ModelState.AddModelError(nameof(sanitation.SanitationType), "Saneringstyp måste anges.");
+            }
+
+            if (string.IsNullOrWhiteSpace(sanitation.Location))
+            {
+                ModelState.AddModelError(nameof(sanitation.Location), "Adress måste anges.");
+            }
+
+            if (string.IsNullOrWhiteSpace(sanitation.Description))
+            {
+                ModelState.AddModelError(nameof(sanitation.Description), "Beskrivning måste anges.");
+            }
+
+            //Kontroll om WasteAmount är positiv
+            if (sanitation.WasteAmount.HasValue && sanitation.WasteAmount.Value < 0)
+            {
+                ModelState.AddModelError(nameof(sanitation.WasteAmount), "Avfallsmängd måste vara ett positivt tal.");
+            }
+
+            //Kontroll om CustomerId och WorkerId existerar
+            var customerExists = await _context.Customers.AnyAsync(c => c.Id == sanitation.CustomerId);
+            if (!customerExists)
+            {
+                ModelState.AddModelError(nameof(sanitation.CustomerId), "Kunden finns inte i databasen.");
+            }
+
+            var workerExists = await _context.Workers.AnyAsync(w => w.Id == sanitation.WorkerId);
+            if (!workerExists)
+            {
+                ModelState.AddModelError(nameof(sanitation.WorkerId), "Saneraren finns inte i databasen.");
+            }
+
+
             if (ModelState.IsValid)
             {
                 _context.Add(sanitation);
 
                 //Lägg till logged in user till created by
                 sanitation.CreatedBy = User.Identity?.Name ?? "Unknown";
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (DbUpdateException ex)
+                {
+                    ModelState.AddModelError(string.Empty, "Ett problem uppstod när data sparades. Försök igen senare.");
+                }
             }
 
             ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Name", sanitation.CustomerId);
@@ -144,44 +190,64 @@ namespace dt191g_projekt.Controllers
                 return NotFound();
             }
 
+            //Kontroll över avfallsmängd
+            if (sanitationModel.WasteAmount <= 0)
+            {
+                ModelState.AddModelError("WasteAmount", "Avfallsmängd måste vara ett positivt värde.");
+            }
+
+
+            var existingSanitation = await _context.Sanitations
+            .AsNoTracking()
+                .FirstOrDefaultAsync(s => s.Id == id);
+
+            if (existingSanitation == null)
+            {
+                return NotFound();
+            }
+
+
+            //Kontroll om post med samma SanitationType, Location och Description finns
+            var duplicatedSanitation = await _context.Sanitations
+                .Where(s => s.Location == sanitationModel.Location
+                        && s.Description == sanitationModel.Description &&
+                        s.Id != sanitationModel.Id) //Exkluderar nuvarande posten
+                .FirstOrDefaultAsync();
+
+
+            if (duplicatedSanitation != null)
+            {
+                //Om post finns, skicka felmeddelande i ModelState
+                ModelState.AddModelError("", "En liknande order med samma beskrivning finns redan.");
+
+                sanitationModel.CreatedBy = existingSanitation.CreatedBy;
+
+                //Lägger till listor för Worker och Customer för att undvika tomma listor
+                ViewBag.WorkerId = new SelectList(_context.Workers, "Id", "Name", sanitationModel.WorkerId);
+                ViewBag.CustomerId = new SelectList(_context.Customers, "Id", "Name", sanitationModel.CustomerId);
+
+
+
+                //Skicka användare till Edit-vyn och visa felmeddelandet
+                return View(sanitationModel);
+            }
+
+            //Kontroll av kund och sanerare
+            var customerExists = await _context.Customers.AnyAsync(c => c.Id == sanitationModel.CustomerId);
+            if (!customerExists)
+            {
+                ModelState.AddModelError("CustomerId", "Kunden finns inte i databasen.");
+            }
+
+            var workerExists = await _context.Workers.AnyAsync(w => w.Id == sanitationModel.WorkerId);
+            if (!workerExists)
+            {
+                ModelState.AddModelError("WorkerId", "Saneraren finns inte i databasen.");
+            }
+
 
             if (ModelState.IsValid)
             {
-                //Hämtar befintliga posten från databasen för att bevara CreatedBy
-                var existingSanitation = await _context.Sanitations
-                    .AsNoTracking()
-                    .FirstOrDefaultAsync(s => s.Id == id);
-
-                if (existingSanitation == null)
-                {
-                    return NotFound();
-                }
-
-                //Kontroll om post med samma SanitationType, Location och Description finns
-                var duplicatedSanitation = await _context.Sanitations
-                    .Where(s => s.Location == sanitationModel.Location
-                            && s.Description == sanitationModel.Description &&
-                            s.Id != sanitationModel.Id) //Exkluderar nuvarande posten
-                    .FirstOrDefaultAsync();
-
-
-                if (duplicatedSanitation != null)
-                {
-                    //Om post finns, skicka felmeddelande i ModelState
-                    ModelState.AddModelError("", "En liknande order med samma beskrivning finns redan.");
-
-                    sanitationModel.CreatedBy = existingSanitation.CreatedBy;
-
-                    //Lägger till listor för Worker och Customer för att undvika tomma listor
-                    ViewBag.WorkerId = new SelectList(_context.Workers, "Id", "Name", sanitationModel.WorkerId);
-                    ViewBag.CustomerId = new SelectList(_context.Customers, "Id", "Name", sanitationModel.CustomerId);
-
-
-
-                    //Skicka användare till Edit-vyn och visa felmeddelandet
-                    return View(sanitationModel);
-                }
-
                 try
                 {
                     //Bevara CreatedBy

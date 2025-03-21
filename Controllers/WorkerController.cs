@@ -50,14 +50,12 @@ namespace dt191g_projekt.Controllers
         }
 
         // POST: Worker/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Role,PhoneNumber")] WorkerModel workerModel)
         {
 
-            
+
             if (_context?.Workers == null)
             {
                 return NotFound();
@@ -66,7 +64,7 @@ namespace dt191g_projekt.Controllers
             //Kontroll om en post med samma Phonenumber redan finns 
             var existingWorker = await _context.Workers
                 .FirstOrDefaultAsync(w => w.PhoneNumber == workerModel.PhoneNumber);
-                                        
+
 
             //Om post finns, visa felmeddelande
             if (existingWorker != null)
@@ -100,8 +98,6 @@ namespace dt191g_projekt.Controllers
         }
 
         // POST: Worker/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Role,PhoneNumber")] WorkerModel workerModel)
@@ -111,25 +107,26 @@ namespace dt191g_projekt.Controllers
                 return NotFound();
             }
 
+
+            //Kontroll om sanerare med samma PhoneNumber finns
+            var duplicatedWorker = await _context.Workers
+                .Where(w => w.PhoneNumber == workerModel.PhoneNumber &&
+                            w.Id != workerModel.Id) //Exkluderar nuvarande posten
+                .FirstOrDefaultAsync();
+
+
+            if (duplicatedWorker != null)
+            {
+                //Om sanerare finns, skicka felmeddelande i ModelState
+                ModelState.AddModelError("", "En sanerare med samma telefonnummer finns redan.");
+
+                //Skicka användare till Edit-vyn och visa felmeddelandet
+                return View(workerModel);
+            }
+
             if (ModelState.IsValid)
             {
 
-                //Kontroll om sanerare med samma PhoneNumber finns
-                var duplicatedWorker = await _context.Workers
-                    .Where(w => w.PhoneNumber == workerModel.PhoneNumber &&
-                                w.Id != workerModel.Id) //Exkluderar nuvarande posten
-                    .FirstOrDefaultAsync();
-
-
-                if (duplicatedWorker != null)
-                {
-                    //Om sanerare finns, skicka felmeddelande i ModelState
-                    ModelState.AddModelError("", "En sanerare med samma telefonnummer finns redan.");
-
-                 //Skicka användare till Edit-vyn och visa felmeddelandet
-                    return View(workerModel);
-                }
-                
                 try
                 {
                     _context.Update(workerModel);

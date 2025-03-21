@@ -14,7 +14,7 @@ namespace SanitationApp.Models
         public string? Role { get; set; } 
         [Required]
          [Display(Name = "Telefonnummer")]
-        public int? PhoneNumber { get; set; } 
+        public string? PhoneNumber { get; set; } 
 
         //En arbetare kan ha flera saneringsarbeten
         public List<SanitationModel>? Sanitations { get; set; }
