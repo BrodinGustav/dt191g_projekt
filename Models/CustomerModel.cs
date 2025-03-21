@@ -7,14 +7,17 @@ namespace SanitationApp.Models
     public class CustomerModel
     {
         public int Id { get; set; }
+
         [Display(Name = "Namn")]
-        [Required]
+        [Required(ErrorMessage = "Namn är obligatorisk.")]
         public string? Name { get; set; }
+        
          [Display(Name = "Adress")]
-        [Required]
+        [Required(ErrorMessage = "Adress är obligatorisk.")]
         public string? Address { get; set; }
+        
          [Display(Name = "Telefonnummer")]
-        [Required]
+        [Required(ErrorMessage = "Telefon är obligatorisk.")]
         [Phone]
         public string? PhoneNumber { get; set; }
 

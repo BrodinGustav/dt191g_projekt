@@ -6,13 +6,16 @@ namespace SanitationApp.Models
     public class WorkerModel
     {
         public int Id { get; set; } 
+
          [Display(Name = "Namn")]
-        [Required]
-        public string? Name { get; set; } 
+        [Required(ErrorMessage = "Namn är obligatorisk.")]
+        public string? Name { get; set; }
+
          [Display(Name = "Roll")]
-        [Required]
+        [Required(ErrorMessage = "Roll är obligatorisk.")]
         public string? Role { get; set; } 
-        [Required]
+
+        [Required(ErrorMessage = "Telefonnummer är obligatorisk.")]
          [Display(Name = "Telefonnummer")]
         public string? PhoneNumber { get; set; } 
 

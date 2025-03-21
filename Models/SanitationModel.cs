@@ -7,18 +7,23 @@ namespace dt191g_projekt.Models {
     public class SanitationModel {
         //Properties
         public int Id { get; set; }
-        [Required]
+        
+        [Required(ErrorMessage = "Saneringstyp är obligatorisk.")]
          [Display(Name = "Saneringstyp")]
         public string? SanitationType { get; set; }
-        [Required]
+        
+        [Required(ErrorMessage = "Adress är obligatorisk.")]
          [Display(Name = "Adress")]
         public string? Location { get; set; }
-        [Required]
+       
+        [Required(ErrorMessage = "Beskrivning är obligatorisk.")]
          [Display(Name = "Beskrivning")]
         public string? Description { get; set; }
-         [Display(Name = "Avfallsmängd")]
+      
+         [Display(Name = "Avfallsmängd")]  
         public int? WasteAmount { get; set; }
          [Display(Name = "Skapad av")] 
+        
         public string? CreatedBy { get; set; }
 
 

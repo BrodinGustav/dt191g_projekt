@@ -94,22 +94,8 @@ namespace dt191g_projekt.Controllers
             }
 
 
-            //Kontroll om obligatoriska fält är ifyllda
-            if (string.IsNullOrWhiteSpace(sanitation.SanitationType))
-            {
-                ModelState.AddModelError(nameof(sanitation.SanitationType), "Saneringstyp måste anges.");
-            }
-
-            if (string.IsNullOrWhiteSpace(sanitation.Location))
-            {
-                ModelState.AddModelError(nameof(sanitation.Location), "Adress måste anges.");
-            }
-
-            if (string.IsNullOrWhiteSpace(sanitation.Description))
-            {
-                ModelState.AddModelError(nameof(sanitation.Description), "Beskrivning måste anges.");
-            }
-
+            //Kontroll kring fält 
+            
             //Kontroll om WasteAmount är positiv
             if (sanitation.WasteAmount.HasValue && sanitation.WasteAmount.Value < 0)
             {
